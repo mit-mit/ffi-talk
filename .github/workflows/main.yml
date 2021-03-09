@@ -20,18 +20,16 @@ jobs:
 
       - uses: dart-lang/setup-dart@v1
 
-      - name: Utils
-        run: cd utils_example
-
       - name: Build C library
         run: |
+          cd utils_example
           cd utilslib
           cmake .
           make
 
       - name: Install Dart dependencies
         run: |
-          cd ..
+          cd utils_example
           dart pub get
 
       # Uncomment this step to verify the use of 'dart format' on each commit.
