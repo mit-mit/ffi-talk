@@ -1,4 +1,4 @@
-LIBRARY   structs
+LIBRARY   utils
 EXPORTS
     add
     subtract
