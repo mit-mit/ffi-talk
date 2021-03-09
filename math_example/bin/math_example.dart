@@ -12,7 +12,7 @@ typedef addDart = int Function(int a, int b);
 
 void main(List<String> arguments) {
   final mathPath = path.join(
-      Directory.current.path, 'mathlib', 'libmath.dylib');
+      Directory.current.path, 'mathlib', 'lib', 'libmath.dylib');
   final mathLib = DynamicLibrary.open(mathPath);
   final add = mathLib.lookupFunction<addC, addDart>('add');
   var result = add(40, 2);
