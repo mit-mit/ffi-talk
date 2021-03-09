@@ -1,0 +1,4 @@
+LIBRARY   structs
+EXPORTS
+    add
+    subtract
