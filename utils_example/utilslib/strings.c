@@ -4,14 +4,15 @@
 
 #include <stdlib.h>
 
+// Reverses a string in-place.
 void reverse(char *str)
 {
-   // Calculate length.
+   // Calculate length of string.
    int l = 0;
    while (*(str + l) != '\0')
       l++;
 
-   // Initialize;
+   // Initialize.
    int i;
    char *first, *last, temp;
    first = str;
@@ -21,7 +22,7 @@ void reverse(char *str)
       last++;
    }
 
-   // Iterate from both ends, swapping as we go.
+   // Iterate from both ends, swapping first and last as we go.
    for (i = 0; i < l / 2; i++)
    {
       temp = *last;
