@@ -14,7 +14,10 @@ on:
 jobs:
   utils_example:
     runs-on: macos-latest
-
+    defaults:
+      run:
+        working-directory: utils_example
+    
     steps:
       - uses: actions/checkout@v2
 
@@ -22,15 +25,12 @@ jobs:
 
       - name: Build C library
         run: |
-          cd utils_example
           cd utilslib
           cmake .
           make
 
       - name: Install Dart dependencies
-        run: |
-          cd utils_example
-          dart pub get
+        run: dart pub get
 
       # Uncomment this step to verify the use of 'dart format' on each commit.
       - name: Verify formatting
