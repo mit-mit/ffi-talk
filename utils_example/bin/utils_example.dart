@@ -7,23 +7,29 @@ import 'dart:io';
 import 'package:path/path.dart' as path;
 import 'package:ffi/ffi.dart';
 
-// int add(int a, int b);
-typedef addC = Int32 Function(Int32 a, Int32 b);
-typedef addDart = int Function(int a, int b);
-
-// void reverse(char str*);
-typedef reverseC = Void Function(Pointer<Utf8> str);
-typedef reverseDart = void Function(Pointer<Utf8> str);
-
 void main(List<String> arguments) {
+  // Look up the shared `libutils` library.
   final utilsPath =
       path.join(Directory.current.path, 'utilslib', 'lib', 'libutils.dylib');
   final utilsLib = DynamicLibrary.open(utilsPath);
-  final add = utilsLib.lookupFunction<addC, addDart>('add');
+
+  // Look up the `add` function.
+  final add = utilsLib.lookupFunction<
+      // int add(int a, int b)
+      Int32 Function(Int32, Int32),
+      int Function(int, int)>('add');
+
+  // Call add.
   var result = add(40, 2);
   print('Result is $result.');
 
-  final reverse = utilsLib.lookupFunction<reverseC, reverseDart>('reverse');
+  // Look up the `reverse` function.
+  final reverse = utilsLib.lookupFunction<
+      // void reverse(char str*)
+      Void Function(Pointer<Utf8>),
+      void Function(Pointer<Utf8> str)>('reverse');
+
+  // Call hello.
   final hello = 'Hello Michael'.toNativeUtf8();
   reverse(hello);
   print('Result is ${hello.toDartString()}');
