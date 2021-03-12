@@ -1,37 +1,17 @@
-// Copyright (c) 2021, the Dart project authors.  Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
-// BSD-style license that can be found in the LICENSE file.
-
 import 'dart:ffi';
-import 'dart:io';
-import 'package:path/path.dart' as path;
 import 'package:ffi/ffi.dart';
 
 void main(List<String> arguments) {
-  // Look up the shared `libutils` library.
-  final utilsPath =
-      path.join(Directory.current.path, 'utilslib', 'lib', 'libutils.dylib');
-  final utilsLib = DynamicLibrary.open(utilsPath);
-
-  // Look up the `add` function.
-  final add = utilsLib.lookupFunction<
-      // int add(int a, int b)
-      Int32 Function(Int32, Int32),
+  final utilsLib = DynamicLibrary.open('utilslib/lib/libutils.1.0.0.dylib');
+  final add = utilsLib.lookupFunction<Int32 Function(Int32, Int32),
       int Function(int, int)>('add');
+  final result = add(2, 3);
+  print(result);
 
-  // Call add.
-  var result = add(40, 2);
-  print('Result is $result.');
-
-  // Look up the `reverse` function.
-  final reverse = utilsLib.lookupFunction<
-      // void reverse(char str*)
-      Void Function(Pointer<Utf8>),
-      void Function(Pointer<Utf8> str)>('reverse');
-
-  // Call hello.
-  final hello = 'Hello Michael'.toNativeUtf8();
+  final hello = 'Hello'.toNativeUtf8();
+  final reverse = utilsLib.lookupFunction<Void Function(Pointer<Utf8>),
+      void Function(Pointer<Utf8>)>('reverse');
   reverse(hello);
-  print('Result is ${hello.toDartString()}');
-  calloc.free(hello);
+  print(hello.toDartString());
+  malloc.free(hello);
 }
