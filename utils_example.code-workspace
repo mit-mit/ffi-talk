@@ -4,5 +4,8 @@
 			"path": "utils_example"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"scm.diffDecorations": "none",
+		"git.decorations.enabled": false
+	}
 }
