@@ -3,11 +3,13 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'dart:ffi';
+import 'dart:io';
 
 import 'package:ffi/ffi.dart';
 
 void main(List<String> arguments) {
-  final dylib = DynamicLibrary.open('utilslib/lib/libutils.1.0.0.dylib');
+  final root = File(Platform.script.path).parent.parent.path;
+  final dylib = DynamicLibrary.open('$root/utilslib/lib/libutils.1.0.0.dylib');
   final add = dylib.lookupFunction<Int32 Function(Int32, Int32),
       int Function(int, int)>('add');
   final result = add(40, 2);
