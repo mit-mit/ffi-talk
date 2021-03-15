@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "utils_example"
+		}
+	],
+	"settings": {
+		"scm.diffDecorations": "none",
+		"git.decorations.enabled": false,
+		"files.exclude": {
+			"**/.*": true,
+			"**/*.def": true,
+			"**/CMakeFiles": true,
+			"**/CMakeCache.txt": true,
+			"**/cmake_install.cmake": true,
+			"**/Makefile": true,
+		},
+		"editor.hover.enabled": false
+	}
+}
