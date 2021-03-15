@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "veggieseasons"
+		}
+	],
+	"settings": {
+		"scm.diffDecorations": "none",
+		"git.decorations.enabled": false,
+		"files.exclude": {
+			"**/.*": true,
+			"build": true,
+		},
+		"editor.hover.enabled": false,
+	}
+}

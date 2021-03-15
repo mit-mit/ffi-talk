@@ -1,0 +1,40 @@
+name: SQLite3
+description: SQLite3 bindings.
+
+output: 'lib/src/third_party/sqlite3/generated_bindings.dart'
+headers:
+  entry-points:
+    - 'third_party/sqlite3/sqlite3.h'
+
+# Copy the comments over.
+comments:
+  style: any
+  length: full
+
+# Copy in SQLites copyright note and ignore some lints.
+preamble: |
+  // 2001 September 15
+  //
+  // The author disclaims copyright to this source code.  In place of
+  // a legal notice, here is a blessing:
+  //
+  //    May you do good and not evil.
+  //    May you find forgiveness for yourself and forgive others.
+  //    May you share freely, never taking more than you give.
+  //
+  // ignore_for_file: camel_case_types
+  // ignore_for_file: constant_identifier_names
+  // ignore_for_file: non_constant_identifier_names
+
+# Remove noise. https://github.com/dart-lang/ffigen/issues/191
+macros:
+  exclude:
+    - __GNUC_VA_LIST
+
+# Remove noise. https://github.com/dart-lang/ffigen/issues/5
+array-workaround: true
+
+# Remove noise.
+structs:
+  rename:
+    __va_list_tag: va_list_tag
