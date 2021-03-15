@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "sqlite"
+		}
+	],
+	"settings": {
+		"scm.diffDecorations": "none",
+		"git.decorations.enabled": false,
+		"files.exclude": {
+			"**/.*": true,
+		},
+		"editor.hover.enabled": false,
+	}
+}
